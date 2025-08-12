@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Interaktif Bisnis Produk Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals (Slate & Indigo) -->
+    <!-- Application Structure Plan: Aplikasi ini menggunakan struktur berbasis tab yang berorientasi pada tugas untuk mengubah e-book linear menjadi pengalaman yang dapat dijelajahi. Pengguna dapat langsung melompat ke bagian yang paling relevan bagi mereka (misalnya, 'Temukan Ide' atau 'Jual & Promosi') daripada membaca bab demi bab. Struktur ini dipilih untuk memfasilitasi pembelajaran mandiri dan memungkinkan pengguna untuk fokus pada informasi yang mereka butuhkan saat itu juga, sehingga meningkatkan kegunaan dan keterlibatan. Navigasi utama mengarahkan ke bagian konten yang sesuai, yang menggunakan elemen interaktif seperti kartu yang dapat diklik dan akordeon untuk menyajikan informasi secara ringkas. -->
+    <!-- Visualization & Content Choices: 
+        - Informasi: Jenis Produk -> Tujuan: Mengatur -> Presentasi: Kartu interaktif berdasarkan keahlian -> Interaksi: Klik untuk menampilkan contoh produk -> Justifikasi: Lebih menarik dan terorganisir daripada daftar statis.
+        - Informasi: Proses Bisnis (Ide, Buat, Jual) -> Tujuan: Menunjukkan alur -> Presentasi: Diagram alur langkah-demi-langkah horizontal -> Interaksi: Elemen visual yang memandu pengguna melalui tahapan -> Justifikasi: Memvisualisasikan perjalanan dari awal hingga akhir dengan jelas.
+        - Informasi: Strategi Promosi -> Tujuan: Mengatur -> Presentasi: Komponen akordeon -> Interaksi: Klik untuk memperluas dan membaca detail -> Justifikasi: Menghemat ruang layar dan memungkinkan pengguna fokus pada satu strategi pada satu waktu.
+        - Semua visualisasi dibuat menggunakan HTML/Tailwind dan ditenagai oleh Vanilla JS untuk interaktivitas. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .tab-button.active {
+            border-color: #4f46e5;
+            background-color: #eef2ff;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .skill-card.active {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            border-color: #6366f1;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto px-4 py-8 md:py-12">
+
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-indigo-700 mb-3">Panduan Lengkap Bisnis Produk Digital</h1>
+            <p class="text-lg text-slate-600 max-w-3xl mx-auto">Sebuah peta jalan interaktif untuk mengubah keahlian Anda menjadi sumber penghasilan yang stabil dan fleksibel.</p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10 sticky top-4 z-10 bg-slate-50/80 backdrop-blur-sm py-2 rounded-xl">
+            <button data-target="dasar" class="tab-button active text-sm md:text-base px-4 py-2 rounded-full border-2 border-transparent bg-white shadow-sm hover:bg-slate-100 transition">🚀 Mulai dari Sini</button>
+            <button data-target="ide" class="tab-button text-sm md:text-base px-4 py-2 rounded-full border-2 border-transparent bg-white shadow-sm hover:bg-slate-100 transition">💡 Temukan Ide</button>
+            <button data-target="pembuatan" class="tab-button text-sm md:text-base px-4 py-2 rounded-full border-2 border-transparent bg-white shadow-sm hover:bg-slate-100 transition">🛠️ Proses Pembuatan</button>
+            <button data-target="penjualan" class="tab-button text-sm md:text-base px-4 py-2 rounded-full border-2 border-transparent bg-white shadow-sm hover:bg-slate-100 transition">💰 Jual & Promosi</button>
+            <button data-target="simulasi" class="tab-button text-sm md:text-base px-4 py-2 rounded-full border-2 border-transparent bg-white shadow-sm hover:bg-slate-100 transition">📊 Studi Kasus</button>
+        </nav>
+
+        <!-- Content Sections -->
+        <main>
+            <!-- Section: Dasar -->
+            <section id="dasar" class="content-section active">
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">Bab 1: Memahami Dunia Produk Digital</h2>
+                    <p class="text-slate-600 mb-6">Produk digital adalah aset non-fisik yang dibuat sekali dan dapat dijual berkali-kali secara online. Bagian ini menjelaskan konsep dasar dan mengapa ini adalah model bisnis yang sangat menarik, terutama bagi pemula.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-3">Apa Itu Produk Digital?</h3>
+                            <p class="text-slate-600">Berbeda dengan produk fisik, produk digital tidak memerlukan bahan baku, penyimpanan, atau pengiriman. Contohnya termasuk e-book, kursus online, template desain, preset foto, dan software. Aset ini dikirim secara instan kepada pelanggan melalui unduhan, menciptakan efisiensi yang luar biasa.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-3">Keunggulan Utama</h3>
+                            <ul class="space-y-3 text-slate-600">
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2 mt-1">✓</span> <strong>Modal Sangat Rendah:</strong> Modal utama Anda adalah waktu dan keahlian, bukan uang untuk inventaris.</li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2 mt-1">✓</span> <strong>Pendapatan Pasif:</strong> Penjualan dapat berjalan otomatis 24/7, bahkan saat Anda tidur.</li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2 mt-1">✓</span> <strong>Skalabilitas Tanpa Batas:</strong> Jual ke 10 atau 10.000 orang dengan usaha produksi yang sama.</li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2 mt-1">✓</span> <strong>Fleksibilitas Penuh:</strong> Bekerja dari mana saja dan kapan saja sesuai keinginan Anda.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Ide -->
+            <section id="ide" class="content-section">
+                 <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold mb-2 text-indigo-700">Bab 2: Mencari Ide yang Tepat</h2>
+                    <p class="text-slate-600 mb-6">Ide terbaik sering kali datang dari keahlian yang sudah Anda miliki atau masalah yang berhasil Anda pecahkan. Klik kartu di bawah ini untuk melihat contoh produk berdasarkan keahlian Anda.</p>
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                        <div class="skill-card cursor-pointer p-4 border-2 rounded-lg text-center transition hover:shadow-md hover:-translate-y-1" data-skill="penulis">
+                            <div class="text-3xl mb-2">✍️</div>
+                            <h3 class="font-semibold">Ahli Menulis</h3>
+                        </div>
+                        <div class="skill-card cursor-pointer p-4 border-2 rounded-lg text-center transition hover:shadow-md hover:-translate-y-1" data-skill="desainer">
+                            <div class="text-3xl mb-2">🎨</div>
+                            <h3 class="font-semibold">Ahli Desain</h3>
+                        </div>
+                        <div class="skill-card cursor-pointer p-4 border-2 rounded-lg text-center transition hover:shadow-md hover:-translate-y-1" data-skill="pengajar">
+                            <div class="text-3xl mb-2">🧑‍🏫</div>
+                            <h3 class="font-semibold">Ahli Mengajar</h3>
+                        </div>
+                        <div class="skill-card cursor-pointer p-4 border-2 rounded-lg text-center transition hover:shadow-md hover:-translate-y-1" data-skill="teknis">
+                            <div class="text-3xl mb-2">💻</div>
+                            <h3 class="font-semibold">Ahli Teknis</h3>
+                        </div>
+                    </div>
+                    <div id="skill-results" class="p-6 bg-slate-100 rounded-lg min-h-[150px] flex items-center justify-center transition-all duration-300">
+                        <p class="text-slate-500">Pilih salah satu keahlian di atas untuk melihat ide produk.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Pembuatan -->
+            <section id="pembuatan" class="content-section">
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold mb-2 text-indigo-700">Bab 3: Membuat Produk Pertama Anda (MVP)</h2>
+                    <p class="text-slate-600 mb-8">Jangan terjebak dalam perfeksionisme. Fokuslah pada "Minimum Viable Product" (MVP), yaitu versi sederhana dari produk Anda yang sudah bisa menyelesaikan masalah utama pelanggan dan memberikan nilai nyata.</p>
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                        <!-- Step 1 -->
+                        <div class="text-center flex-1 p-4">
+                            <div class="mx-auto w-16 h-16 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl font-bold mb-3 ring-4 ring-indigo-200">1</div>
+                            <h3 class="font-semibold text-lg">Perencanaan</h3>
+                            <p class="text-sm text-slate-500">Buat kerangka (blueprint), tentukan daftar isi, dan poin-poin utama. Semakin jelas rencananya, semakin mudah eksekusinya.</p>
+                        </div>
+                        <div class="w-full h-px md:w-auto md:h-auto md:flex-1 bg-slate-200 md:bg-transparent relative after:content-[''] after:absolute after:top-1/2 after:left-0 after:w-full after:h-0.5 after:bg-slate-200 after:hidden md:after:block"></div>
+                        <!-- Step 2 -->
+                        <div class="text-center flex-1 p-4">
+                            <div class="mx-auto w-16 h-16 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl font-bold mb-3 ring-4 ring-indigo-200">2</div>
+                            <h3 class="font-semibold text-lg">Produksi</h3>
+                            <p class="text-sm text-slate-500">Fokus pada kualitas, bukan kuantitas. Gunakan alat gratis seperti Canva, Google Docs, atau CapCut untuk memulai.</p>
+                        </div>
+                        <div class="w-full h-px md:w-auto md:h-auto md:flex-1 bg-slate-200 md:bg-transparent relative after:content-[''] after:absolute after:top-1/2 after:left-0 after:w-full after:h-0.5 after:bg-slate-200 after:hidden md:after:block"></div>
+                        <!-- Step 3 -->
+                        <div class="text-center flex-1 p-4">
+                            <div class="mx-auto w-16 h-16 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl font-bold mb-3 ring-4 ring-indigo-200">3</div>
+                            <h3 class="font-semibold text-lg">Pengemasan</h3>
+                            <p class="text-sm text-slate-500">Buat desain sampul yang menarik dan siapkan file dalam format yang mudah diakses (misal: PDF atau ZIP).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Penjualan -->
+            <section id="penjualan" class="content-section">
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">Bab 4: Memasarkan dan Menjual Tanpa Iklan</h2>
+                    <p class="text-slate-600 mb-6">Produk hebat perlu strategi penjualan yang tepat. Anda tidak perlu iklan berbayar untuk memulai. Manfaatkan platform yang ada dan strategi organik untuk menjangkau pelanggan pertama Anda.</p>
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Platform Jualan Mudah</h3>
+                            <div class="space-y-4">
+                                <div class="p-4 border rounded-lg hover:shadow-md transition">
+                                    <h4 class="font-bold">Gumroad</h4>
+                                    <p class="text-slate-600 text-sm">Sangat populer untuk kreator global. Mudah digunakan, mengurus pembayaran dan pengiriman file otomatis.</p>
+                                </div>
+                                <div class="p-4 border rounded-lg hover:shadow-md transition">
+                                    <h4 class="font-bold">Payhip</h4>
+                                    <p class="text-slate-600 text-sm">Alternatif Gumroad yang juga menyediakan fitur toko online sederhana dan sistem yang andal.</p>
+                                </div>
+                                <div class="p-4 border rounded-lg hover:shadow-md transition">
+                                    <h4 class="font-bold">Lynk.id</h4>
+                                    <p class="text-slate-600 text-sm">Platform link-in-bio lokal yang memungkinkan Anda membuat halaman toko sederhana, menerima pembayaran dari berbagai metode di Indonesia, dan mengirimkan produk digital secara otomatis.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Strategi Promosi Organik</h3>
+                            <div id="accordion-container" class="space-y-2">
+                                <div class="accordion-item border rounded-lg">
+                                    <button class="accordion-header w-full flex justify-between items-center p-4 text-left font-semibold">
+                                        Content Marketing
+                                        <span class="transform transition-transform text-indigo-500">▼</span>
+                                    </button>
+                                    <div class="accordion-content px-4 pb-4">
+                                        <p class="text-slate-600 text-sm">Buat konten gratis yang bermanfaat (artikel blog, postingan media sosial, video YouTube) untuk membangun kepercayaan dan menarik audiens yang relevan.</p>
+                                    </div>
+                                </div>
+                                <div class="accordion-item border rounded-lg">
+                                    <button class="accordion-header w-full flex justify-between items-center p-4 text-left font-semibold">
+                                        Email Marketing
+                                        <span class="transform transition-transform text-indigo-500">▼</span>
+                                    </button>
+                                    <div class="accordion-content px-4 pb-4">
+                                        <p class="text-slate-600 text-sm">Kumpulkan email audiens dengan imbalan gratis (e.g., checklist). Kirim newsletter berisi tips dan penawaran eksklusif untuk membangun hubungan jangka panjang.</p>
+                                    </div>
+                                </div>
+                                <div class="accordion-item border rounded-lg">
+                                    <button class="accordion-header w-full flex justify-between items-center p-4 text-left font-semibold">
+                                        Kolaborasi
+                                        <span class="transform transition-transform text-indigo-500">▼</span>
+                                    </button>
+                                    <div class="accordion-content px-4 pb-4">
+                                        <p class="text-slate-600 text-sm">Ajak kreator lain di niche yang sama untuk saling promosi atau membuat proyek bersama. Ini cara efektif untuk menjangkau audiens baru secara organik.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Simulasi -->
+            <section id="simulasi" class="content-section">
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">Bab 5: Studi Kasus - Menjual Template Canva</h2>
+                    <p class="text-slate-600 mb-6">Mari kita terapkan semua konsep dalam sebuah skenario nyata. Ini akan memberi Anda gambaran jelas tentang bagaimana prosesnya berjalan dari awal hingga akhir.</p>
+                    <ol class="relative border-l border-slate-200 space-y-8">
+                        <li class="ml-6">
+                            <span class="absolute flex items-center justify-center w-8 h-8 bg-indigo-100 rounded-full -left-4 ring-8 ring-white text-indigo-700 font-bold">1</span>
+                            <h3 class="font-semibold text-lg">Menemukan Ide</h3>
+                            <p class="text-sm text-slate-600"><strong>Keahlian:</strong> Mahir Canva. <strong>Masalah:</strong> Pebisnis kuliner butuh konten visual menarik tapi tak punya waktu. <strong>Ide Produk:</strong> "Paket Template Konten Canva untuk Bisnis Kuliner."</p>
+                        </li>
+                        <li class="ml-6">
+                            <span class="absolute flex items-center justify-center w-8 h-8 bg-indigo-100 rounded-full -left-4 ring-8 ring-white text-indigo-700 font-bold">2</span>
+                            <h3 class="font-semibold text-lg">Pembuatan Produk</h3>
+                            <p class="text-sm text-slate-600">Membuat 50 template di Canva (menu, promo, testimoni). Desain profesional dan mudah diedit. Dikemas dalam satu folder dengan panduan PDF singkat.</p>
+                        </li>
+                        <li class="ml-6">
+                            <span class="absolute flex items-center justify-center w-8 h-8 bg-indigo-100 rounded-full -left-4 ring-8 ring-white text-indigo-700 font-bold">3</span>
+                            <h3 class="font-semibold text-lg">Pemasaran Tanpa Iklan</h3>
+                            <p class="text-sm text-slate-600">Membuat akun Instagram, posting tips desain gratis setiap hari. Menawarkan 5 template gratis untuk mengumpulkan email. Berkolaborasi dengan food blogger untuk testimoni.</p>
+                        </li>
+                        <li class="ml-6">
+                            <span class="absolute flex items-center justify-center w-8 h-8 bg-indigo-100 rounded-full -left-4 ring-8 ring-white text-indigo-700 font-bold">4</span>
+                            <h3 class="font-semibold text-lg">Penjualan</h3>
+                            <p class="text-sm text-slate-600">Menjual produk di Lynk.id dengan deskripsi yang jelas tentang bagaimana produk ini bisa menghemat waktu dan meningkatkan penjualan bisnis kuliner.</p>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center mt-12 py-6 border-t">
+            <p class="text-slate-500">Anda telah memiliki peta jalan yang jelas. Langkah terpenting adalah memulai. Selamat mencoba dan semoga sukses!</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tab-button');
+            const sections = document.querySelectorAll('.content-section');
+            const skillCards = document.querySelectorAll('.skill-card');
+            const skillResults = document.getElementById('skill-results');
+            const accordionContainer = document.getElementById('accordion-container');
+
+            const skillData = {
+                penulis: {
+                    title: 'Untuk Ahli Menulis',
+                    items: ['E-book & Panduan Praktis (PDF)', 'Template Konten (Blog, Email)', 'Jurnal & Planner Digital']
+                },
+                desainer: {
+                    title: 'Untuk Ahli Desain & Visual',
+                    items: ['Template (Canva, Figma)', 'Aset Kreatif (Font, Ikon, Preset)', 'Seni Digital & Wallpaper']
+                },
+                pengajar: {
+                    title: 'Untuk Ahli Mengajar',
+                    items: ['Kursus Online (Seri Video)', 'Tutorial Video Singkat', 'Modul & Kuis Interaktif']
+                },
+                teknis: {
+                    title: 'Untuk Ahli Teknis',
+                    items: ['Software & Aplikasi Sederhana', 'Plugin & Add-on', 'Template Website (WordPress, dll)']
+                }
+            };
+
+            // Tab navigation
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    const target = tab.getAttribute('data-target');
+                    sections.forEach(section => {
+                        if (section.id === target) {
+                            section.classList.add('active');
+                        } else {
+                            section.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            // Skill cards interaction
+            skillCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    skillCards.forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
+                    
+                    const skill = card.dataset.skill;
+                    const data = skillData[skill];
+
+                    let content = `<div class="text-left"><h4 class="font-bold text-lg mb-2 text-indigo-800">${data.title}</h4><ul class="space-y-1 list-disc list-inside text-slate-700">`;
+                    data.items.forEach(item => {
+                        content += `<li>${item}</li>`;
+                    });
+                    content += '</ul></div>';
+                    
+                    skillResults.innerHTML = content;
+                });
+            });
+
+            // Accordion interaction
+            if (accordionContainer) {
+                accordionContainer.addEventListener('click', function(e) {
+                    const header = e.target.closest('.accordion-header');
+                    if (!header) return;
+
+                    const item = header.parentElement;
+                    const content = item.querySelector('.accordion-content');
+                    const icon = header.querySelector('span');
+
+                    const isOpen = content.style.maxHeight;
+
+                    // Close all items
+                    item.parentElement.querySelectorAll('.accordion-item').forEach(otherItem => {
+                        otherItem.querySelector('.accordion-content').style.maxHeight = null;
+                        otherItem.querySelector('.accordion-header span').classList.remove('rotate-180');
+                    });
+
+                    // Toggle current item
+                    if (!isOpen) {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.classList.add('rotate-180');
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
